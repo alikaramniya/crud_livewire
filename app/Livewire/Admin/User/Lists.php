@@ -85,6 +85,10 @@ class Lists extends Component
         }
     }
 
+    public function deleteRecord(User $user)
+    {
+        $user->delete();
+    }
     public function deleteAll()
     {
         if ($this->dontDeleteThisIds) {

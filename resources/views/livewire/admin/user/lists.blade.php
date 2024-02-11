@@ -28,7 +28,7 @@
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
-                        <a class="btn btn-danger btn-sm" href="{{ $user->id }}">delete</a>
+                        <a class="btn btn-danger btn-sm" wire:confirm="جان حاجی مطمعنی؟ بعدا نگی ندونستمو فلان بهمان :/" wire:click="deleteRecord({{ $user->id }})">delete</a>
                     </td>
                 </tr>
             @endforeach
