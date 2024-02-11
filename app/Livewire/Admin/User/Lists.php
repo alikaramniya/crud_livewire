@@ -55,7 +55,7 @@ class Lists extends Component
         }
     }
 
-    public function updatedUserIds()
+    public function updatedUserIds($value)
     {
         if ($this->selectAll) {
             $result = array_diff($this->allUserIdsForThisPaginate, $this->userIds);
@@ -69,6 +69,19 @@ class Lists extends Component
             }
         } else {
             $this->actionDelete = 'deleteSelectedField';
+        }
+
+        if ($value !== '__rm__') {
+            if ($this->dontDeleteThisIds) {
+                $result = [];
+                foreach ($this->dontDeleteThisIds as $id) {
+                    if (!in_array($id, $this->userIds)) {
+                        $result[] = $id;
+                    }
+                }
+
+                $this->dontDeleteThisIds = $result;
+            }
         }
     }
 
