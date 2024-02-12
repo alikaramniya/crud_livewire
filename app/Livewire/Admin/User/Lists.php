@@ -4,6 +4,7 @@ namespace App\Livewire\Admin\User;
 
 use App\Models\User;
 use Illuminate\Support\Facades\DB;
+use Livewire\Attributes\On;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -127,9 +128,10 @@ class Lists extends Component
         $this->userIds = User::orderBy('id')->limit($this->paginate)->offset($countOffsetItems)->pluck('id')->toArray();
     }
 
+    #[On('users-list-updated')]
     public function render()
     {
-        $users = User::paginate($this->paginate);
+        $users = User::orderBy('id')->paginate($this->paginate);
 
         return view('livewire.admin.user.lists', [
             'users' => $users,
